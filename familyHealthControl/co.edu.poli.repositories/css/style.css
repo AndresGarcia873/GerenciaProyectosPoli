@@ -1,0 +1,66 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	/* height: 100vh; */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	/*background: #ccc;*/
+}
+
+.login {
+	width: 360px;
+	height: min-content;
+	padding: 20px;
+	border-radius: 12px;
+	background: #ffffff;
+}
+
+.login h1 {
+	font-size: 36px;
+	margin-bottom: 25px;
+}
+
+.login form {
+	font-size: 20px;
+}
+
+.login form .form-group {
+	margin-bottom: 12px;
+}
+
+.login form input[type="submit"] {
+	font-size: 20px;
+	margin-top: 15px;
+}
+
+.user-icon-placeholder::placeholder {
+	padding: 20px;
+	background: url('../img/user_icon.png');
+	background-size: 15px 15px;
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+.lock-icon-placeholder::placeholder {
+	padding: 20px;
+	background: url('../img/lock_icon.png');
+	background-size: 15px 15px;
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+contenedor {
+	display:flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: left;
+	width:auto;
+	padding:2em;
+	border-style: solid;
+	border: 1px;
+}

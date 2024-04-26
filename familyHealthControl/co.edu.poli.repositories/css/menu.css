@@ -1,0 +1,110 @@
+*{
+	margin: 0px;
+	padding: 0px;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+}
+
+body{
+	font-family: verdana;
+	line-height: 18px;
+    border-radius:5px;
+    background-image:url('../img/textura_oscura.jpg');
+    background-repeat:no-repeat;
+    background-size:cover
+}
+
+a{
+	text-decoration: none;
+	color: #fff;
+}
+
+header#menu{
+	position: absolute;
+	width: 170px;
+	height: 100%;
+	background-color: #1a95d5;
+}
+
+header#menu .menu{
+	width: 100%;
+}
+
+header#menu .menu .icono{
+	font-size: 12px;
+	line-height: 18px;
+}
+
+.menu{
+    padding:0;
+    list-style:none;
+    font-size:18px;
+    background:#1a95d5;    
+}
+
+.menu li a{
+    display: block;
+    border-bottom: 1px solid rgba(0,0,0, 0.2);
+    border-top: 1px solid rgba(255,255,255, 0.2);
+    background:#1a95d5;
+    text-decoration:none;
+    color:#FFF;
+    text-shadow: 1px 0px 1px rgba(0,0,0,0.2);
+    filter: dropshadow(color=#000, offx=1, offy=0);
+    padding:10px;
+    padding-left:20px;
+}
+
+.menu li ul li a, .submenu li ul li a{
+    font-size:14px;
+    background:#4a6ba2;
+    text-shadow: 1px 0px 1px rgba(255,255,255,0.5);
+}
+
+.menu li a:hover{
+    background:#c1c1c1;
+}
+
+ul.menu ul, ul.submenu ul{
+    margin:0;
+    padding:0;
+    list-style:none;
+    height:0;
+    overflow: hidden;
+    transition:0.3s;
+    -moz-transition:0.3s;
+    -webkit-transition:0.3s;
+}
+
+ul.menu > li:hover > ul, ul.submenu > li:hover > ul{
+    height:100%;
+    overflow:visible;
+}
+
+h2 {
+	color: #D2691E
+}
+
+/*#encabezado{
+    width: 100%;
+    text-align: center;
+    background: rgb(115,114,114);
+    background: linear-gradient(90deg, rgba(115,114,114,1) 0%, rgba(255,255,255,1) 100%, rgba(0,212,255,1) 100%);
+    border-radius: 5px 5px 0 0;
+}*/
+#contenido{
+    /*display: flex;*/
+    /*background: rgb(115,114,114);
+    background: linear-gradient(90deg, rgba(115,114,114,1) 0%, rgba(255,255,255,1) 100%, rgba(0,212,255,1) 100%);*/
+    background-color: whitesmoke;
+    height: 90vh;
+    border-radius:5px;
+    margin:2em;
+}
+#contenido .container{
+    height: 80vh;
+    overflow-y: scroll;
+    position: relative;
+}
+/*Estilos general*/
