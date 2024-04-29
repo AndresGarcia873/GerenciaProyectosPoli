@@ -6,6 +6,21 @@ class IngresoPacientesModel extends UtilModel {
     parent::__construct();
   }
 
+  public function insert($datos){
+    //Método para insertar datos en la Base de Datos
+    try{
+        //Aqui se coloca el nombre de la tabla y los campos de la base de datos
+        $query = $this->db->connect()->prepare('INSERT into pacientes (PACIENTE_TIP_ID, PACIENTE_IDEN, PRIMERNOMBRE, SEGUNDONOMBRE, ID_GENERO, FECHANACIMIENTO, CORREO) 
+            values(:vTipodocumentousuario, :vIdusuario, :vNombres, :vApellidos, :vGenero, :vEdad, :vEmail)');
+        //Este if contiene los datos que vienen desde el controlador controllersRegistro.php en su método registrarUsuario
+        if ($query->execute(['vTipodocumentousuario' => $datos['vTipodocumentousuario'], 'vIdusuario' => $datos['vIdusuario'], 'vNombres' => $datos['vNombres'], 'vApellidos' => $datos['vApellidos'], 
+            'vGenero' => $datos['vGenero'], 'vEdad' => $datos['vEdad'], 'vEmail' => $datos['vEmail']]));
+        return true;
+    }catch(PDOException $e){
+        return false;
+    }
+  }
+
   public function getTipoDocumentoUsuario(){
     //Método para consultar datos en la Base de Datos de usuario
     $items = [];

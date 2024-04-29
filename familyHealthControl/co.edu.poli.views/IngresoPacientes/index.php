@@ -22,40 +22,40 @@
         <?php require 'co.edu.poli.views/Menu.php'; ?>
         <div id="contenedor" class="container">
             <p style="text-align:left"><b>Información Básica Cotizante</b></p>
-            <form id="beneficiario">
+            <form id="beneficiario" action="<?php echo constant('URL'); ?>IngresoPacientes/registrarPaciente" method="POST">
                 <div id="infoBeneficiario" class="container" style="border:2px solid;display:flex;flex-direction: column;width:auto; height: auto">
                     <div class="d-inline-flex p-2 bd-highlight ">
                         <div style="width:12%" class="p-1"><label for="tipoIdent">Tipo Identificación:</label></div>
                         <div style="width:30%" class="p-2">
-                            <select class="form-select" id="tipoIdent" name="tipoIdent" class="form-control">
+                            <select class="form-select" id="tipoIdent" name="tipoIdent" class="form-control" required>
                                 <option value="">Seleccione Tipo Documento</option>
                                 <?php foreach ($this->tipodocumentos as $row) {?>
                                     <option value="<?php echo $row->idtipodocuser ?>"><?php echo $row->tipodocuser; ?></option>
                                 <?php } ?>
                             </select>
                         </div>
-                        <div style="width:10%" class="p-1"><label for="tipoIdent">Número Identificación:</label></div>
-                        <div style="width:30%" class="p-2"><input type="text" id="identificacion" class="form-control"></div>
+                        <div style="width:10%" class="p-1"><label for="idUser">Número Identificación:</label></div>
+                        <div style="width:30%" class="p-2"><input type="text" id="idUser" name="idUser" class="form-control" required></div>
                     </div>
                     <div class="d-inline-flex p-2 bd-highlight">
                         <div style="width:12%" class="p-2"><label for="nombres">Nombres:</label></div>
-                        <div style="width:30%" class="p-2"><input type="text" id="nombres" name="nombres" class="form-control"></div>   
+                        <div style="width:30%" class="p-2"><input type="text" id="nombres" name="nombres" class="form-control" required></div>   
                         <div style="width:10%" class="p-2"><label for="apellidos">Apellidos:</label></div> 
-                        <div style="width:30%" class="p-2"><input type="text" id="apellidos" name="apellidos" class="form-control"></div>   
+                        <div style="width:30%" class="p-2"><input type="text" id="apellidos" name="apellidos" class="form-control" required></div>   
                     </div>
                     <div class="d-inline-flex p-2 bd-highlight">
                         
                             <div style="width:12%;" class="p-2"><label for="genero">Genero:</label></div>
                             <div style="width:30%" class="p-2">
-                                <select class="form-select" id="genero" name="genero">
+                                <select class="form-select" id="genero" name="genero" required>
                                 <option value="">Seleccione Género</option>
                                 <?php foreach ($this->generos as $row) {?>
                                     <option value="<?php echo $row->idgenero ?>"><?php echo $row->genero; ?></option>
                                 <?php } ?>
                                 </select>
                             </div>   
-                            <div style="width:10%;" class="p-2"><label for="edad">Edad:</label></div>
-                            <div style="width:30%;" class="p-2"><input type="date" id="edad" name="edad" class="form-control"></div>                            
+                            <div style="width:10%;" class="p-2"><label for="edad">Fecha Nacimiento:</label></div>
+                            <div style="width:30%;" class="p-2"><input type="date" id="edad" name="edad" class="form-control" required></div>                            
                         
                     </div>
                     <div class="d-inline-flex p-2 bd-highlight">
@@ -84,63 +84,12 @@
                             } 
                         ?>
                     </div>
-                    <!-- <div style="width:25%">
-                        <div class="form-check" style="width:55%;text-align:left">
-                            <input class="form-check-input" type="checkbox" id="angina">
-                            <label class="form-check-label" for="angina">Angina de Pecho</label>
-                        </div>
-                        <div class="form-check" style="width:55%;text-align:left">
-                            <input class="form-check-input" type="checkbox" id="asma">
-                            <label class="form-check-label" for="asma">Asma</label>
-                        </div>
-                        <div class="form-check" style="width:55%;text-align:left">
-                            <input class="form-check-input" type="checkbox" id="hipertension">
-                            <label class="form-check-label" for="hipertension">Hipertensión</label>
-                        </div>
-                        <div class="form-check" style="width:55%;text-align:left">
-                            <input class="form-check-input" type="checkbox" id="Diabetes">
-                            <label class="form-check-label" for="Diabetes">Diabetes</label>
-                        </div>
-                    </div>
-                    <div style="width:25%">
-                        <div class="form-check" style="width:55%;text-align:left">
-                            <input class="form-check-input" type="checkbox" id="obesidad">
-                            <label class="form-check-label" for="obesidad">Obesidad</label>
-                        </div>
-                        <div class="form-check" style="width:55%;text-align:left">
-                            <input class="form-check-input" type="checkbox" id="cancer">
-                            <label class="form-check-label" for="cancer">Cancer</label>
-                        </div>
-                        <div class="form-check" style="width:55%;text-align:left">
-                            <input class="form-check-input" type="checkbox" id="estres">
-                            <label class="form-check-label" for="estres">Estres</label>
-                        </div>
-                        <div class="form-check" style="width:55%;text-align:left">
-                            <input class="form-check-input" type="checkbox" id="influenza">
-                            <label class="form-check-label" for="influenza">Influenza</label>
-                        </div>
-                    </div>
-                    <div style="width:20%">
-                        <div class="form-check" style="width:55%;text-align:left">
-                            <input class="form-check-input" type="checkbox" id="na">
-                            <label class="form-check-label" for="na">N/A</label>
-                        </div>
-                        <div class="form-check" style="width:70%;text-align:left">
-                            <input class="form-check-input" type="checkbox" id="otra">
-                            <label class="form-check-label" for="otra">Otra (Seleccione)</label>
-                        </div>
-                        <select class="form-select">
-                            <option>Seleccione cuál</option>
-                            <option>Covid-19</option>
-                            <option>VIH</option>
-                            <option>H1N1</option>
-                        </select>
-                    </div> -->
                 </div>
+                <div class="text-center <?php echo $this->color; ?>"><?php echo $this->mensaje; ?></div>
                 <div class="row mt-4 p-3 align-items-center mb-5">
                 <div class="col-lg-12 col-md-12 text-center">
                     <div class="form-group">
-                        <button class="btn btn-primary btn-lg" type="submit">INGRESAR</button>
+                        <button class="btn btn-primary btn-lg" type="submit" onclick="establecerRequired()">INGRESAR</button>
                     </div>
                 </div>
             </div>
@@ -148,5 +97,27 @@
         </div>
     </div>
     <?php require 'co.edu.poli.views/footer.php'; ?>
+    <script>
+        // Función para verificar si al menos un checkbox está marcado
+        function verificarCheckbox() {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            var alMenosUnoSeleccionado = false;
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    alMenosUnoSeleccionado = true;
+                }
+            });
+            return alMenosUnoSeleccionado;
+        }
+
+        // Función para establecer dinámicamente la propiedad required en un checkbox
+        function establecerRequired() {
+            var alMenosUnoSeleccionado = verificarCheckbox();
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(function(checkbox) {
+                checkbox.required = !alMenosUnoSeleccionado;
+            });
+        }
+    </script>
     </body>
 </html>

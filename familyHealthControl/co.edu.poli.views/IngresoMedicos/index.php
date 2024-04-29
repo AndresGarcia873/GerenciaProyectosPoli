@@ -22,39 +22,39 @@
         <div id="datos" class="container">
             <div class="row border border-dark p-2">               
                 <div class="col-lg-12 col-md-12">
-                <form name="ingresoMedicos">
+                <form name="ingresoMedicos" action="<?php echo constant('URL'); ?>IngresoMedicos/registrarDoctor" method="POST">
                     <div class="col-lg-12 col-md-6">
                         <div class="form-group row" style="width:80%;margin: 1rem;">
-                            <div style="width: 20%;"><label for="identificacion">No. Identificación:&nbsp;</label></div>
-                            <div style="width: 30%;"><input class="form-control" heigth="15px" type="text" id="identificacion" name="identificacion"></div>                    
+                            <div style="width: 20%;"><label for="idUser">No. Identificación:&nbsp;</label></div>
+                            <div style="width: 30%;"><input class="form-control" heigth="15px" type="text" id="identificacion" name="idUser" required></div>                    
                         </div>
                     </div>
                     <div class="col-lg-12 col-md-6">
                     <div class="form-group row" style="width:80%;margin: 1rem;">
                         <div style="width: 20%;"><label class="form-label"  for="nombres">Nombres:&nbsp;</label></div>
-                        <div style="width: 60%;"><input class="form-control" type="text" id="nombres" name="nombres"></div>
+                        <div style="width: 60%;"><input class="form-control" type="text" id="nombres" name="nombres" required></div>
                     </div>
                     </div>
                     <div class="col-lg-12 col-md-6">
                     <div class="form-group row" style="width:80%;margin: 1rem;">
                         <div style="width: 20%;"><label class="form-label" for="Apellidos">Apellidos:&nbsp;</label></div>
-                        <div style="width: 60%;"><input class="form-control" type="text" id="Apellidos" name="apellidos"></div>
+                        <div style="width: 60%;"><input class="form-control" type="text" id="Apellidos" name="apellidos" required></div>
                     </div>
                     </div>
                     <div class="col-lg-12 col-md-6">
                     <div class="form-group row" style="width:80%;margin: 1rem;">
-                        <div style="width: 20%;"><label class="form-label" for="especialidad">Seleccione Especialidad:&nbsp;</label></div>
+                        <div style="width: 20%;"><label class="form-label" for="especialidad">Especialidad:&nbsp;</label></div>
                         <div style="width: 40%;">
-                            <select class="form-select" id="especialidad" name="especialidad">
-                                <option>Medicina General</option>
-                                <option>Optometría</option>
-                                <option>Psicología</option>
-                                <option>Pediatría</option>
-                                <option>Oncología</option>
+                            <select class="form-select" id="especialidad" name="especialidad" required>
+                            <option value="">Seleccione Especialidad</option>
+                                <?php foreach ($this->especialidades as $row) {?>
+                                    <option value="<?php echo $row->idespecialidad ?>"><?php echo $row->especialidad; ?></option>
+                                <?php } ?>
                             </select>
                         </div>
                     </div>
                     </div>
+                    <div class="text-center <?php echo $this->color; ?>"><?php echo $this->mensaje; ?></div>
                     <div class="row mt-4 p-3 align-items-center mb-5">
                     <div class="col-lg-12 col-md-12 text-center">
                         <div class="form-group">

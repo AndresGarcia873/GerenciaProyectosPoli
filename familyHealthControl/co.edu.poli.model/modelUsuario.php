@@ -10,6 +10,9 @@
         public $password;
         public $idgenero;
         public $genero;
+        public $idespecialidad;
+        public $especialidad;
+        public $edad;
         public $idtipousu;
         public $tipousu;
         public $idhistmed;
