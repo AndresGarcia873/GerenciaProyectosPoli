@@ -15,6 +15,8 @@
     <!-- Font Awesome v5.6.1 -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
         integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <!--Jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -24,7 +26,7 @@
         <div class="container">
             <div class="row border border-dark p-2">
                 <div class="col-lg-6 col-md-8">
-                    <select class="form-select" name="usuario" id="usuario" class="w-100" heigth="15px">
+                    <select class="form-select cargarDetalleUsuario" name="usuario" id="usuario" class="w-100" heigth="15px">
                         <option value="" disabled selected hidden>Seleccione Usuario</option>
                         <?php foreach ($this->usuarios as $row) {?>
                         <option value="<?php echo $row->iduser ?>"><?php echo $row->user; ?></option>
@@ -122,6 +124,42 @@
         </div>
     </div>
     <?php require 'co.edu.poli.views/footer.php'; ?>
+    <script>
+    var Examenes_URL = {
+        urlconsultarDetalleUsuario: "<?php echo constant('URL'); ?>IndicadoresSalud/consultarDetalleUsuario"
+    }
+    var Examenes_Funciones = {
+        cargarDetalleUsuario: function(iduser) {
+            try {
+                $.ajax({
+                    url: Examenes_URL.urlconsultarDetalleUsuario + "/iduser=" + iduser,
+                    type: "GET",
+                    cache: true,
+                    async: true,
+                    datatype: "json"
+                }).done(function(data) {
+                    data = JSON.parse(data);
+                    console.log(data);
+                    $("#identificacion").val(data.identificacion);
+                    $("#nombre").val(data.nombre);
+                    $("#genero").val(data.genero);
+                    $("#edad").val(data.edad);
+                    $("#email").val(data.correo);
+
+                }).fail(function(a, b, ex) {
+                    return ex;
+                })
+            } catch (ex) {
+                console.error(ex);
+            }
+        }
+    }
+    $(document).ready(function() {
+        $('.cargarDetalleUsuario').on('change', function() {
+            Examenes_Funciones.cargarDetalleUsuario($(this).val())
+        });
+    });
+    </script>
 </body>
 
 </html>

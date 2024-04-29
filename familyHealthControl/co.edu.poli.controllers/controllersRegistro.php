@@ -10,6 +10,8 @@ class ControllersRegistro extends UtilController{
 		$this->view->tipodocumentos = $tipodocumentos;
 		$generos = $this->model->getGeneroUsuario();
 		$this->view->generos = $generos;
+		$tipoUsuarios = $this->model->getTipoUsuario();
+		$this->view->tipoUsuarios = $tipoUsuarios;
 		$this->view->loadScreen('Registro/index');
 	}
 

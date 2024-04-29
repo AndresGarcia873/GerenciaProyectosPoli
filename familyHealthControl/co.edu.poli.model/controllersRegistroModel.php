@@ -59,5 +59,24 @@ class ControllersRegistroModel extends UtilModel {
     }
   }
 
+  public function getTipoUsuario(){
+    //Método para consultar datos en la Base de Datos de usuario
+    $items = [];
+    try{
+      //Se realiza la consulta general sobre la tabla 
+      $query = $this->db->connect()->query('SELECT * from tipo_usu');
+      while ($row = $query->fetch()) {
+        $item = new ModelUsuario();
+        //Los items cargan los campos de la Base de Datos
+        $item->idtipousu = $row['ID_TIPO_USU'];
+        $item->tipousu = $row['TIPO_USU_DESCRIPCION'];
+        array_push($items, $item);
+      }
+      return $items;
+    }catch(PDOException $e){
+      return [];
+    }
+  }
+
 }
 ?>

@@ -19,6 +19,10 @@ class IndicadoresSalud extends UtilController{
 		$this->view->usuarios = $usuarios;
 		$this->view->loadScreen('IndicadoresSalud/index');
 	}
+	function consultarDetalleUsuario($iduser){
+        $usuarios = $this->model->getUsuariobyUser($iduser);
+        echo json_encode($usuarios); 
+    }
 	function registrarIndicador(){
 		$iduser = $this->session->get('id');
 		$fecha = date('y-m-d H:i:s');

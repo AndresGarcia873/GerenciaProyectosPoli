@@ -10,6 +10,10 @@
         public $password;
         public $idgenero;
         public $genero;
+        public $idtipousu;
+        public $tipousu;
+        public $idhistmed;
+        public $histmed;
         public $email;
         public $tipoUsuario;
         public $estado;

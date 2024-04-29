@@ -23,46 +23,68 @@
         <div id="contenedor" class="container">
             <p style="text-align:left"><b>Información Básica Cotizante</b></p>
             <form id="beneficiario">
-                <div id="infoBeneficiario" class="container" style="border:2px solid;display:flex;flex-direction: column;width:auto">
+                <div id="infoBeneficiario" class="container" style="border:2px solid;display:flex;flex-direction: column;width:auto; height: auto">
                     <div class="d-inline-flex p-2 bd-highlight ">
                         <div style="width:12%" class="p-1"><label for="tipoIdent">Tipo Identificación:</label></div>
-                        <div style="width:15%" class="p-2">
+                        <div style="width:30%" class="p-2">
                             <select class="form-select" id="tipoIdent" name="tipoIdent" class="form-control">
-                                <option>Cedula</option>
-                                <option>T. Identidad</option>
-                                <option>Pasaporte</option>
-                                <option>NIT</option>
+                                <option value="">Seleccione Tipo Documento</option>
+                                <?php foreach ($this->tipodocumentos as $row) {?>
+                                    <option value="<?php echo $row->idtipodocuser ?>"><?php echo $row->tipodocuser; ?></option>
+                                <?php } ?>
                             </select>
                         </div>
-                        <div style="width:20%" class="p-2"><input type="text" id="identificacion" class="form-control"></div>
+                        <div style="width:10%" class="p-1"><label for="tipoIdent">Número Identificación:</label></div>
+                        <div style="width:30%" class="p-2"><input type="text" id="identificacion" class="form-control"></div>
                     </div>
                     <div class="d-inline-flex p-2 bd-highlight">
                         <div style="width:12%" class="p-2"><label for="nombres">Nombres:</label></div>
                         <div style="width:30%" class="p-2"><input type="text" id="nombres" name="nombres" class="form-control"></div>   
-                        <div style="width:7%" class="p-2"><label for="apellidos">Apellidos:</label></div> 
+                        <div style="width:10%" class="p-2"><label for="apellidos">Apellidos:</label></div> 
                         <div style="width:30%" class="p-2"><input type="text" id="apellidos" name="apellidos" class="form-control"></div>   
                     </div>
                     <div class="d-inline-flex p-2 bd-highlight">
                         
                             <div style="width:12%;" class="p-2"><label for="genero">Genero:</label></div>
-                            <div style="width:20%" class="p-2">
+                            <div style="width:30%" class="p-2">
                                 <select class="form-select" id="genero" name="genero">
-                                    <option>Masculino</option>
-                                    <option>Femenino</option>
-                                    <option>No Binario</option>
-                                    <option>Otro</option>
+                                <option value="">Seleccione Género</option>
+                                <?php foreach ($this->generos as $row) {?>
+                                    <option value="<?php echo $row->idgenero ?>"><?php echo $row->genero; ?></option>
+                                <?php } ?>
                                 </select>
                             </div>   
-                            <div style="width:7%;" class="p-2"><label for="edad">Edad:</label></div>
-                            <div style="width:18%;" class="p-2"><input type="date" id="edad" name="edad" class="form-control"></div>
-                            <div style="width:7%;" class="p-2"><label for="email">Email:</label></div>
-                            <div style="width:20%;" class="p-2"><input type="email" id="email" name="email" class="form-control"></div>
+                            <div style="width:10%;" class="p-2"><label for="edad">Edad:</label></div>
+                            <div style="width:30%;" class="p-2"><input type="date" id="edad" name="edad" class="form-control"></div>                            
                         
+                    </div>
+                    <div class="d-inline-flex p-2 bd-highlight">
+                        <div style="width:12%;" class="p-2"><label for="email">Email:</label></div>
+                        <div style="width:30%;" class="p-2"><input type="email" id="email" name="email" class="form-control"></div>
                     </div>
                 </div>
                 <p style="text-align:left"><b>Condiciones de salud</b></p>
-                <div id="condSalud" class="container" style="border:2px solid;display:flex;flex-direction: row;width:auto;padding:1em">
-                    <div style="width:25%">
+                <div id="condSalud" class="container" style="border:2px solid;display:flex;flex-direction: row;width:auto;height:auto;padding:1em">
+                    <div class="row">
+                        <?php 
+                            $total_checks = count($this->historialMedico);
+                            $checks_per_row = ceil($total_checks / 3);
+                            $check_count = 0;
+                            foreach ($this->historialMedico as $row) {
+                                if ($check_count % $checks_per_row === 0 && $check_count !== 0) {
+                                    echo '</div><div class="row">';
+                                }
+                        ?>
+                                <div class="form-check" style="margin-bottom: 10px;">
+                                    <input class="form-check-input" type="checkbox" id="<?php echo $row->idhistmed ?>">
+                                    <label class="form-check-label" for="<?php echo $row->idhistmed ?>"><?php echo $row->histmed ?></label>
+                                </div>
+                        <?php 
+                            $check_count++;
+                            } 
+                        ?>
+                    </div>
+                    <!-- <div style="width:25%">
                         <div class="form-check" style="width:55%;text-align:left">
                             <input class="form-check-input" type="checkbox" id="angina">
                             <label class="form-check-label" for="angina">Angina de Pecho</label>
@@ -99,16 +121,21 @@
                         </div>
                     </div>
                     <div style="width:20%">
+                        <div class="form-check" style="width:55%;text-align:left">
+                            <input class="form-check-input" type="checkbox" id="na">
+                            <label class="form-check-label" for="na">N/A</label>
+                        </div>
                         <div class="form-check" style="width:70%;text-align:left">
                             <input class="form-check-input" type="checkbox" id="otra">
                             <label class="form-check-label" for="otra">Otra (Seleccione)</label>
                         </div>
                         <select class="form-select">
+                            <option>Seleccione cuál</option>
                             <option>Covid-19</option>
                             <option>VIH</option>
                             <option>H1N1</option>
                         </select>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="row mt-4 p-3 align-items-center mb-5">
                 <div class="col-lg-12 col-md-12 text-center">

@@ -97,14 +97,12 @@
 			</div>
 
 			<label class="form-label">Tipo Usuario</label>
-			<div class="form-check">
-				<input class="form-check-input" type="radio" name="tipoUsuario" id="tipoUsuario1" value="Cotizante" checked>
-				<label class="form-check-label" for="tipoUsuario1">Cotizante</label>
-			</div>
-			<div class="form-check">
-				<input class="form-check-input" type="radio" name="tipoUsuario" id="tipoUsuario2" value="Beneficiario">
-				<label class="form-check-label" for="tipoUsuario2">Beneficiario</label>
-			</div>
+			<?php foreach ($this->tipoUsuarios as $row) {?>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="tipoUsuario" id="tipoUsuario<?php echo $row->idtipousu ?>" value="<?php echo $row->tipousu ?>">
+					<label class="form-check-label" for="tipoUsuario<?php echo $row->idtipousu ?>"><?php echo $row->tipousu ?></label>
+				</div>
+			<?php } ?>
 
 			<div class="text-center <?php echo $this->color; ?>"><?php echo $this->mensaje; ?></div>
 
