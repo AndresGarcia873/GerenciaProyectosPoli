@@ -99,8 +99,8 @@
 			<label class="form-label">Tipo Usuario</label>
 			<?php foreach ($this->tipoUsuarios as $row) {?>
 				<div class="form-check">
-					<input class="form-check-input" type="radio" name="tipoUsuario" id="tipoUsuario<?php echo $row->idtipousu ?>" value="<?php echo $row->tipousu ?>">
-					<label class="form-check-label" for="tipoUsuario<?php echo $row->idtipousu ?>"><?php echo $row->tipousu ?></label>
+					<input class="form-check-input" type="radio" name="tipoUsuario" id="tipoUsuario" value="<?php echo $row->idtipousu ?>">
+					<label class="form-check-label"><?php echo $row->tipousu ?></label>
 				</div>
 			<?php } ?>
 
